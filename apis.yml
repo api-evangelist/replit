@@ -10,9 +10,9 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Code
-  - Version Control
   - Compiling
   - Programming Languages
+  - Version Control
 url: >-
   https://raw.githubusercontent.com/api-evangelist/replit/refs/heads/main/apis.yml
 created: '2026-01-02'
@@ -23,9 +23,9 @@ apis:
     name: Replit
     tags:
       - Code
-      - Version Control
       - Compiling
       - Programming Languages
+      - Version Control
     humanURL: https://replit.com/
     properties:
       - url: https://replit.com/
