@@ -1,0 +1,37 @@
+{
+  "title": "Create a Repl",
+  "description": "Example of creating a new Python Repl on Replit.",
+  "request": {
+    "method": "POST",
+    "url": "https://replit.com/api/v1/repls",
+    "headers": {
+      "Authorization": "Bearer $REPLIT_API_TOKEN",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "My Python Flask API",
+      "language": "python3",
+      "description": "A simple REST API built with Flask",
+      "isPrivate": false
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "abc123def456",
+      "slug": "my-python-flask-api",
+      "title": "My Python Flask API",
+      "description": "A simple REST API built with Flask",
+      "language": "python3",
+      "isPrivate": false,
+      "url": "https://replit.com/@myusername/my-python-flask-api",
+      "createdAt": "2026-05-02T10:00:00.000Z",
+      "updatedAt": "2026-05-02T10:00:00.000Z",
+      "owner": {
+        "id": 12345,
+        "username": "myusername",
+        "displayName": "My Name"
+      }
+    }
+  }
+}

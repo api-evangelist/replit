@@ -1,38 +1,109 @@
 # Replit (replit)
-Replit is a collaborative online platform that allows users to write, compile, and run code in various programming languages. It provides a seamless and integrated development environment for coders to work on projects together in real-time. With features such as version control, live sharing, and instant deployment, Replit streamlines the coding process and encourages collaboration among developers. Whether you're a beginner learning to code or a seasoned programmer working on a complex project, Replit offers a user-friendly and efficient platform to write and execute code easily.
+
+Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. It provides instant, containerized environments for many programming languages, real-time multiplayer collaboration, an integrated editor and terminal, built-in package management, version control, and AI coding assistance. Whether you're learning to code or building production applications, Replit lets you go from idea to running prototype with no local setup required.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/replit/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
 ## Tags:
 
- - Code, Version Control, Compiling, Programming Languages
+- Code
+- Compiling
+- Development Environment
+- Programming Languages
+- Version Control
 
 ## Timestamps
 
-- **Created:** 2026-01-02 
-- **Modified:** 2026-03-16 
+- **Created:** 2026-01-02
+- **Modified:** 2026-05-02
 
 ## APIs
 
 ### Replit
-Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. It provides instant, containerized environments for many programming languages, real-time multiplayer collaboration, an integrated editor and terminal, and built-in package management and version control. With AI coding assistance, templates, and starter projects, you can go from idea to running prototype quickly, then deploy to production with hosted deployments and custom domains—no local setup required. Replit is used for learning, rapid prototyping, and building full-stack apps on any device.
+
+Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls (coding environments), deployments, and user profiles.
 
 **Human URL:** [https://replit.com/](https://replit.com/)
 
-
 #### Tags:
 
- - Code, Version Control, Compiling, Programming Languages
+- Code
+- Development Environment
+- Deployments
+- Programming Languages
+- Repls
+- Users
+- Version Control
 
 #### Properties
 
-- [Documentation](https://replit.com/)
+- [Documentation](https://docs.replit.com/api)
+- [OpenAPI](openapi/replit-openapi.yml)
+- [Spectral Ruleset](rules/replit-rules.yml)
+- [Capability: Development Workflow](capabilities/development-workflow.yaml)
+- [Vocabulary](vocabulary/replit-vocabulary.yml)
+
+## Common Properties
+
+- [Website](https://replit.com)
+- [Documentation](https://docs.replit.com)
+- [API Documentation](https://docs.replit.com/api)
+- [Pricing](https://replit.com/pricing)
+- [Blog](https://blog.replit.com)
+- [TermsOfService](https://replit.com/site/terms)
+- [PrivacyPolicy](https://replit.com/site/privacy)
+- [SignUp](https://replit.com/signup)
+- [Login](https://replit.com/login)
+- [GitHub Organization](https://github.com/replit)
+- [Python SDK](https://github.com/replit/replit-py)
+- [Discord](https://discord.gg/replit)
+- [Status](https://status.replit.com)
+
+## Artifacts
+
+### OpenAPI Specifications
+
+- [replit-openapi.yml](openapi/replit-openapi.yml) — Replit REST API covering Repls, deployments, and users (11 operations)
+
+### Spectral Rulesets
+
+- [replit-rules.yml](rules/replit-rules.yml) — Spectral rules enforcing Replit API conventions (dot-notation operationIds, Bearer auth, cursor pagination)
+
+### Naftiko Capabilities
+
+#### Shared Definitions
+
+- [shared/replit.yaml](capabilities/shared/replit.yaml) — Complete Replit API consumed definition
+
+#### Workflow Capabilities
+
+- [development-workflow.yaml](capabilities/development-workflow.yaml) — Create Repls, deploy to production, manage users (9 tools)
+
+### JSON Schemas
+
+- [replit-repl-schema.json](json-schema/replit-repl-schema.json) — Schema for Replit Repl objects
+
+### JSON Structures
+
+- [replit-repl-structure.json](json-structure/replit-repl-structure.json) — Field-level documentation for Repl objects
+
+### JSON-LD Contexts
+
+- [replit-context.jsonld](json-ld/replit-context.jsonld) — Linked data context mapping Replit terms to schema.org vocabulary
+
+### Examples
+
+- [replit-create-repl-example.json](examples/replit-create-repl-example.json) — Create a new Python Repl
+
+### Vocabulary
+
+- [replit-vocabulary.yml](vocabulary/replit-vocabulary.yml) — Domain vocabulary covering Repls, deployments, collaboration, and hosting
 
 ## Maintainers
 

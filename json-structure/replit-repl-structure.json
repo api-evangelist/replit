@@ -1,0 +1,66 @@
+{
+  "name": "Replit Repl",
+  "description": "Structure of a Repl object returned by the Replit API.",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "description": "Unique Repl identifier"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "required": true,
+      "description": "URL-friendly identifier (used in replit.com/@username/slug)"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "required": true,
+      "description": "Display name of the Repl"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Optional description"
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "required": true,
+      "description": "Programming language template (nodejs, python3, ruby, html, etc.)"
+    },
+    {
+      "name": "isPrivate",
+      "type": "boolean",
+      "required": false,
+      "description": "Whether the Repl is private (visible only to owner)"
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "required": false,
+      "description": "Full URL to access the Repl"
+    },
+    {
+      "name": "createdAt",
+      "type": "datetime",
+      "required": false,
+      "description": "ISO 8601 creation timestamp"
+    },
+    {
+      "name": "updatedAt",
+      "type": "datetime",
+      "required": false,
+      "description": "ISO 8601 last-updated timestamp"
+    },
+    {
+      "name": "owner",
+      "type": "object",
+      "required": false,
+      "description": "Owner user object (id, username, displayName)"
+    }
+  ]
+}

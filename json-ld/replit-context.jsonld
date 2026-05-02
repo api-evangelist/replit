@@ -1,0 +1,79 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "replit": "https://replit.com/api/v1#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Repl": {
+      "@id": "replit:Repl",
+      "@type": "schema:SoftwareSourceCode"
+    },
+    "User": {
+      "@id": "replit:User",
+      "@type": "schema:Person"
+    },
+    "Deployment": {
+      "@id": "replit:Deployment",
+      "@type": "schema:WebApplication"
+    },
+
+    "id": "@id",
+    "slug": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "language": {
+      "@id": "schema:programmingLanguage"
+    },
+    "isPrivate": {
+      "@id": "schema:accessMode",
+      "@type": "xsd:boolean"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "owner": {
+      "@id": "schema:author",
+      "@type": "schema:Person"
+    },
+    "username": {
+      "@id": "schema:identifier"
+    },
+    "displayName": {
+      "@id": "schema:name"
+    },
+    "isVerified": {
+      "@id": "schema:identifier",
+      "@type": "xsd:boolean"
+    },
+    "deploymentId": {
+      "@id": "schema:identifier"
+    },
+    "replId": {
+      "@id": "replit:replId"
+    },
+    "status": {
+      "@id": "schema:actionStatus"
+    },
+    "domain": {
+      "@id": "schema:url",
+      "@type": "xsd:anyURI"
+    }
+  }
+}

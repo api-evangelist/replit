@@ -1,0 +1,105 @@
+extends:
+  - spectral:oas
+
+rules:
+  # Replit API conventions:
+  # - Bearer token auth
+  # - Paginated list responses use {items, nextCursor} envelope
+  # - Dot-notation operationIds (e.g. repls.list, repls.deployments.create)
+  # - Path parameters use camelCase (replId, deploymentId, username)
+  # - PATCH for partial updates, DELETE returns 204
+
+  replit-operation-id-dot-notation:
+    description: Replit operationIds must use dot-notation
+    message: "OperationId '{{value}}' must use dot-notation like 'resource.action'"
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9]*(?:\\.[a-z][a-z0-9]*)+$"
+
+  replit-operation-id-required:
+    description: All Replit operations must have an operationId
+    message: "Operation must have an operationId"
+    severity: error
+    given: "$.paths.*[get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  replit-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths.*.*"
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  replit-bearer-auth:
+    description: Replit API uses Bearer token authentication
+    message: "Security scheme must be http/bearer"
+    severity: error
+    given: "$.components.securitySchemes.*"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            type:
+              const: http
+            scheme:
+              const: bearer
+
+  replit-paginated-list-response:
+    description: List responses must use items/nextCursor pagination envelope
+    message: "List responses should use 'items' array and 'nextCursor' pagination"
+    severity: hint
+    given: "$.paths.*[get][responses][200][content][application/json][schema][properties]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          if:
+            properties:
+              items:
+                type: object
+          then:
+            required:
+              - items
+
+  replit-delete-returns-204:
+    description: DELETE operations must return 204
+    message: "DELETE operations should return a 204 No Content response"
+    severity: warn
+    given: "$.paths.*[delete][responses]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required: ["204"]
+
+  replit-path-camel-case-params:
+    description: Path parameters must use camelCase
+    message: "Path parameter '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths.*.*[parameters][?(@.in == 'path')]"
+    then:
+      field: name
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  replit-tags-title-case:
+    description: All tags must use Title Case
+    message: "Tag '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths.*.*.tags.*"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"

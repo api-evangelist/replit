@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/replit/json-schema/replit-repl-schema.json",
+  "title": "Replit Repl",
+  "description": "A Repl is a coding environment on the Replit platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the Repl."
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly identifier for the Repl."
+    },
+    "title": {
+      "type": "string",
+      "description": "Display name of the Repl."
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Description of what the Repl does."
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary programming language (e.g., nodejs, python3, ruby)."
+    },
+    "isPrivate": {
+      "type": "boolean",
+      "description": "Whether the Repl is private."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the Repl on Replit."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the Repl was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the Repl was last updated."
+    },
+    "owner": {
+      "type": "object",
+      "description": "The user or organization that owns this Repl.",
+      "properties": {
+        "id": { "type": "integer" },
+        "username": { "type": "string" },
+        "displayName": { "type": "string" }
+      }
+    }
+  },
+  "required": ["id", "slug", "title", "language"]
+}

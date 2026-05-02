@@ -1,0 +1,131 @@
+name: Replit Vocabulary
+description: >-
+  Vocabulary and taxonomy for the Replit cloud-based development platform API.
+  Covers Repls, deployments, users, and development workflow concepts.
+version: "1.0.0"
+created: "2026-05-02"
+modified: "2026-05-02"
+
+categories:
+  - name: Core Concepts
+    description: Fundamental concepts of the Replit platform.
+    terms:
+      - term: Repl
+        definition: >-
+          A coding environment on Replit. Each Repl is a containerized
+          workspace with a file system, editor, terminal, and runtime for a
+          specific programming language. Identified by owner/slug.
+        related: [Deployment, User]
+
+      - term: Slug
+        definition: >-
+          A URL-friendly identifier for a Repl (e.g., my-flask-api). Combined
+          with the owner username to form the Repl's URL:
+          replit.com/@username/slug.
+        related: [Repl]
+
+      - term: Deployment
+        definition: >-
+          A production-hosted instance of a Repl accessible at a public domain.
+          Deployments have their own lifecycle independent of the development
+          Repl.
+        related: [Repl]
+
+      - term: Fork
+        definition: >-
+          Creating a copy of an existing Repl into your own account. Forks
+          are used for templates, collaboration starting points, and remixing.
+        related: [Repl]
+
+  - name: Development Features
+    description: Development tools and capabilities in Replit.
+    terms:
+      - term: Multiplayer
+        definition: >-
+          Real-time collaborative editing where multiple users can work
+          simultaneously in the same Repl. Similar to Google Docs for code.
+        related: [Repl]
+
+      - term: Ghostwriter
+        definition: >-
+          Replit's AI coding assistant that provides code completion, debugging
+          help, and code generation in the editor.
+        related: [Repl]
+
+      - term: Nix
+        definition: >-
+          The package management system used by Replit to define environment
+          dependencies. Repls can include a replit.nix file to specify packages.
+        related: [Repl]
+
+      - term: Template
+        definition: >-
+          A pre-configured Repl for a specific language, framework, or use
+          case (e.g., Python Flask, Node Express, React). Templates are the
+          starting point when creating new Repls.
+        related: [Repl]
+
+  - name: Deployment Lifecycle
+    description: States and transitions for Replit deployments.
+    terms:
+      - term: pending
+        definition: "Deployment has been created but not yet started."
+        applies_to: [Deployment]
+
+      - term: deploying
+        definition: "Deployment is being built and launched."
+        applies_to: [Deployment]
+
+      - term: ready
+        definition: "Deployment is live and accessible at its public domain."
+        applies_to: [Deployment]
+
+      - term: failed
+        definition: "Deployment failed to build or start."
+        applies_to: [Deployment]
+
+      - term: stopped
+        definition: "Deployment has been stopped and is not serving traffic."
+        applies_to: [Deployment]
+
+  - name: Users and Organizations
+    description: Account types and user-related concepts.
+    terms:
+      - term: User
+        definition: >-
+          A Replit account for an individual developer. Users have a unique
+          username, can create Repls, and have a public profile page.
+        related: [Repl]
+
+      - term: Team
+        definition: >-
+          A Replit organization account for teams. Teams can share Repls,
+          manage permissions, and collaborate on projects.
+        related: [User]
+
+      - term: Education
+        definition: >-
+          Replit's educational product for teaching coding. Educators can
+          create assignments, share starter Repls, and track student progress.
+        related: [Repl]
+
+  - name: Hosting and Infrastructure
+    description: Hosting and runtime infrastructure concepts.
+    terms:
+      - term: Always-On
+        definition: >-
+          A Replit feature that keeps a Repl running continuously without
+          sleeping, enabling persistent servers and background processes.
+        related: [Repl, Deployment]
+
+      - term: Reserved VM
+        definition: >-
+          Dedicated compute resources for a Repl or deployment, providing
+          consistent performance without sharing infrastructure.
+        related: [Deployment]
+
+      - term: Custom Domain
+        definition: >-
+          The ability to map a custom domain name (e.g., myapp.com) to a
+          Replit deployment instead of using the default replit.app domain.
+        related: [Deployment]

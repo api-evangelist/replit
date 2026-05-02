@@ -1,0 +1,270 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Replit API"
+  description: >-
+    Replit REST API for managing Repls, deployments, and user profiles
+    on the cloud-based development platform.
+  tags:
+    - Code
+    - Development Environment
+    - Deployments
+    - Repls
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REPLIT_API_TOKEN: REPLIT_API_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: replit
+      baseUri: https://replit.com/api/v1
+      description: "Replit REST API for programmatic management of coding environments and deployments."
+      authentication:
+        type: bearer
+        token: "{{REPLIT_API_TOKEN}}"
+      resources:
+        - name: repls
+          path: /repls
+          description: "Manage Replit coding environments."
+          operations:
+            - name: list-repls
+              method: GET
+              description: "List all Repls for the authenticated user."
+              inputParameters:
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results per page."
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: "Pagination cursor."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-repl
+              method: POST
+              description: "Create a new Repl."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  language: "{{tools.language}}"
+                  description: "{{tools.description}}"
+                  isPrivate: "{{tools.isPrivate}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-repl
+              method: GET
+              description: "Get details for a specific Repl."
+              inputParameters:
+                - name: replId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The Repl ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-repl
+              method: PATCH
+              description: "Update a Repl's title, description, or privacy."
+              inputParameters:
+                - name: replId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The Repl ID."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  description: "{{tools.description}}"
+                  isPrivate: "{{tools.isPrivate}}"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-repl
+              method: DELETE
+              description: "Permanently delete a Repl."
+              inputParameters:
+                - name: replId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The Repl ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: repl-deployments
+          path: /repls/{replId}/deployments
+          description: "Manage deployments for a Repl."
+          operations:
+            - name: list-repl-deployments
+              method: GET
+              description: "List all deployments for a Repl."
+              inputParameters:
+                - name: replId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The Repl ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-repl-deployment
+              method: POST
+              description: "Deploy a Repl to production hosting."
+              inputParameters:
+                - name: replId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The Repl ID to deploy."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: deployments
+          path: /deployments
+          description: "Manage production deployments."
+          operations:
+            - name: get-deployment
+              method: GET
+              description: "Get details for a specific deployment."
+              inputParameters:
+                - name: deploymentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The deployment ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-deployment
+              method: DELETE
+              description: "Remove a deployment from production."
+              inputParameters:
+                - name: deploymentId
+                  in: path
+                  type: string
+                  required: true
+                  description: "The deployment ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: user
+          path: /user
+          description: "Current authenticated user."
+          operations:
+            - name: get-current-user
+              method: GET
+              description: "Get information about the authenticated user."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: users
+          path: /users
+          description: "User profiles and their Repls."
+          operations:
+            - name: get-user
+              method: GET
+              description: "Get public profile for a user."
+              inputParameters:
+                - name: username
+                  in: path
+                  type: string
+                  required: true
+                  description: "The user's username."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-user-repls
+              method: GET
+              description: "List all public Repls for a user."
+              inputParameters:
+                - name: username
+                  in: path
+                  type: string
+                  required: true
+                  description: "The user's username."
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Results per page."
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: "Pagination cursor."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: replit-rest
+      resources:
+        - path: /v1/repls
+          name: repls
+          description: "Manage Replit coding environments."
+          operations:
+            - method: GET
+              name: list-repls
+              description: "List Repls."
+              call: "replit.list-repls"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: replit-mcp
+      transport: http
+      tools:
+        - name: list-repls
+          description: "List Repls for the authenticated Replit user."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "replit.list-repls"
+          outputParameters:
+            - type: object
+              mapping: "$."
