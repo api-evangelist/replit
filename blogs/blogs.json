@@ -1,0 +1,13 @@
+{
+  "repo": "replit",
+  "feeds": [
+    {
+      "source": "https://blog.replit.com",
+      "feed_url": "https://blog.replit.com/feed.xml",
+      "saved": 10,
+      "title": "Replit Blog"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:34:56Z"
+}
