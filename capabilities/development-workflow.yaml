@@ -1,303 +1,492 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Replit Development Workflow"
-  description: >-
-    Workflow capability for managing the full development lifecycle on Replit.
-    Covers creating and managing Repls (coding environments), deploying
-    applications to production, and managing user profiles. Designed for
-    developers, educators, and platform teams automating coding workflows.
+  label: Replit Development Workflow
+  description: Workflow capability for managing the full development lifecycle on Replit. Covers creating and managing Repls
+    (coding environments), deploying applications to production, and managing user profiles. Designed for developers, educators,
+    and platform teams automating coding workflows.
   tags:
-    - Code
-    - Development Environment
-    - Deployments
-    - Repls
-    - Programming Languages
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Code
+  - Development Environment
+  - Deployments
+  - Repls
+  - Programming Languages
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      REPLIT_API_TOKEN: REPLIT_API_TOKEN
-
+- namespace: env
+  keys:
+    REPLIT_API_TOKEN: REPLIT_API_TOKEN
 capability:
   consumes:
-    - import: replit
-      location: ./shared/replit.yaml
-
+  - type: http
+    namespace: replit
+    baseUri: https://replit.com/api/v1
+    description: Replit REST API for programmatic management of coding environments and deployments.
+    authentication:
+      type: bearer
+      token: '{{REPLIT_API_TOKEN}}'
+    resources:
+    - name: repls
+      path: /repls
+      description: Manage Replit coding environments.
+      operations:
+      - name: list-repls
+        method: GET
+        description: List all Repls for the authenticated user.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Number of results per page.
+        - name: cursor
+          in: query
+          type: string
+          required: false
+          description: Pagination cursor.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-repl
+        method: POST
+        description: Create a new Repl.
+        body:
+          type: json
+          data:
+            title: '{{tools.title}}'
+            language: '{{tools.language}}'
+            description: '{{tools.description}}'
+            isPrivate: '{{tools.isPrivate}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get-repl
+        method: GET
+        description: Get details for a specific Repl.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          required: true
+          description: The Repl ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: update-repl
+        method: PATCH
+        description: Update a Repl's title, description, or privacy.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          required: true
+          description: The Repl ID.
+        body:
+          type: json
+          data:
+            title: '{{tools.title}}'
+            description: '{{tools.description}}'
+            isPrivate: '{{tools.isPrivate}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-repl
+        method: DELETE
+        description: Permanently delete a Repl.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          required: true
+          description: The Repl ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repl-deployments
+      path: /repls/{replId}/deployments
+      description: Manage deployments for a Repl.
+      operations:
+      - name: list-repl-deployments
+        method: GET
+        description: List all deployments for a Repl.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          required: true
+          description: The Repl ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: create-repl-deployment
+        method: POST
+        description: Deploy a Repl to production hosting.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          required: true
+          description: The Repl ID to deploy.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: deployments
+      path: /deployments
+      description: Manage production deployments.
+      operations:
+      - name: get-deployment
+        method: GET
+        description: Get details for a specific deployment.
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+          description: The deployment ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: delete-deployment
+        method: DELETE
+        description: Remove a deployment from production.
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          required: true
+          description: The deployment ID.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user
+      path: /user
+      description: Current authenticated user.
+      operations:
+      - name: get-current-user
+        method: GET
+        description: Get information about the authenticated user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: users
+      path: /users
+      description: User profiles and their Repls.
+      operations:
+      - name: get-user
+        method: GET
+        description: Get public profile for a user.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's username.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-user-repls
+        method: GET
+        description: List all public Repls for a user.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: The user's username.
+        - name: limit
+          in: query
+          type: integer
+          required: false
+          description: Results per page.
+        - name: cursor
+          in: query
+          type: string
+          required: false
+          description: Pagination cursor.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
-    - type: rest
-      port: 8080
-      namespace: replit-workflow-api
-      description: "Unified REST API for Replit development workflow management."
-      resources:
-        - path: /v1/repls
-          name: repls
-          description: "Create and manage Replit coding environments."
-          operations:
-            - method: GET
-              name: list-repls
-              description: "List all Repls for the authenticated user."
-              call: "replit.list-repls"
-              with:
-                limit: "rest.limit"
-                cursor: "rest.cursor"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-repl
-              description: "Create a new Repl."
-              call: "replit.create-repl"
-              with:
-                title: "rest.title"
-                language: "rest.language"
-                description: "rest.description"
-                isPrivate: "rest.isPrivate"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/repls/{id}
-          name: repl
-          description: "Get, update, or delete a specific Repl."
-          operations:
-            - method: GET
-              name: get-repl
-              description: "Get Repl details."
-              call: "replit.get-repl"
-              with:
-                replId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: PATCH
-              name: update-repl
-              description: "Update Repl metadata."
-              call: "replit.update-repl"
-              with:
-                replId: "rest.id"
-                title: "rest.title"
-                description: "rest.description"
-                isPrivate: "rest.isPrivate"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-repl
-              description: "Delete a Repl permanently."
-              call: "replit.delete-repl"
-              with:
-                replId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/repls/{id}/deployments
-          name: repl-deployments
-          description: "Deploy Repls to production hosting."
-          operations:
-            - method: GET
-              name: list-repl-deployments
-              description: "List deployments for a Repl."
-              call: "replit.list-repl-deployments"
-              with:
-                replId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: POST
-              name: create-repl-deployment
-              description: "Deploy a Repl to production."
-              call: "replit.create-repl-deployment"
-              with:
-                replId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/deployments/{id}
-          name: deployment
-          description: "Manage a specific deployment."
-          operations:
-            - method: GET
-              name: get-deployment
-              description: "Get deployment details and status."
-              call: "replit.get-deployment"
-              with:
-                deploymentId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-            - method: DELETE
-              name: delete-deployment
-              description: "Remove a deployment from production."
-              call: "replit.delete-deployment"
-              with:
-                deploymentId: "rest.id"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/user
-          name: current-user
-          description: "Current authenticated user profile."
-          operations:
-            - method: GET
-              name: get-current-user
-              description: "Get the authenticated user's profile."
-              call: "replit.get-current-user"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users/{username}
-          name: user
-          description: "Public user profile."
-          operations:
-            - method: GET
-              name: get-user
-              description: "Get a user's public profile."
-              call: "replit.get-user"
-              with:
-                username: "rest.username"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-        - path: /v1/users/{username}/repls
-          name: user-repls
-          description: "Browse public Repls for a user."
-          operations:
-            - method: GET
-              name: list-user-repls
-              description: "List public Repls for a user."
-              call: "replit.list-user-repls"
-              with:
-                username: "rest.username"
-                limit: "rest.limit"
-                cursor: "rest.cursor"
-              outputParameters:
-                - type: object
-                  mapping: "$."
-
-    - type: mcp
-      port: 9090
-      namespace: replit-workflow-mcp
-      transport: http
-      description: "MCP server for AI-assisted Replit development workflow management."
-      tools:
-        - name: list-repls
-          description: "List all Repls accessible to the authenticated user."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "replit.list-repls"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: create-repl
-          description: "Create a new Repl coding environment with the specified language."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "replit.create-repl"
-          with:
-            title: "tools.title"
-            language: "tools.language"
-            description: "tools.description"
-            isPrivate: "tools.isPrivate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-repl
-          description: "Get detailed information about a specific Repl."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "replit.get-repl"
-          with:
-            replId: "tools.replId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: update-repl
-          description: "Update a Repl's title, description, or privacy setting."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: true
-          call: "replit.update-repl"
-          with:
-            replId: "tools.replId"
-            title: "tools.title"
-            description: "tools.description"
-            isPrivate: "tools.isPrivate"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: delete-repl
-          description: "Permanently delete a Repl."
-          hints:
-            readOnly: false
-            destructive: true
-            idempotent: true
-          call: "replit.delete-repl"
-          with:
-            replId: "tools.replId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: deploy-repl
-          description: "Deploy a Repl to production hosting."
-          hints:
-            readOnly: false
-            destructive: false
-            idempotent: false
-          call: "replit.create-repl-deployment"
-          with:
-            replId: "tools.replId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-deployment
-          description: "Check the status and details of a deployment."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "replit.get-deployment"
-          with:
-            deploymentId: "tools.deploymentId"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: list-user-repls
-          description: "Browse public Repls for any Replit user."
-          hints:
-            readOnly: true
-            openWorld: true
-          call: "replit.list-user-repls"
-          with:
-            username: "tools.username"
-          outputParameters:
-            - type: object
-              mapping: "$."
-
-        - name: get-current-user
-          description: "Get the authenticated user's Replit profile."
-          hints:
-            readOnly: true
-            openWorld: false
-          call: "replit.get-current-user"
-          outputParameters:
-            - type: object
-              mapping: "$."
+  - type: rest
+    port: 8080
+    namespace: replit-workflow-api
+    description: Unified REST API for Replit development workflow management.
+    resources:
+    - path: /v1/repls
+      name: repls
+      description: Create and manage Replit coding environments.
+      operations:
+      - method: GET
+        name: list-repls
+        description: List all Repls for the authenticated user.
+        call: replit.list-repls
+        with:
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-repl
+        description: Create a new Repl.
+        call: replit.create-repl
+        with:
+          title: rest.title
+          language: rest.language
+          description: rest.description
+          isPrivate: rest.isPrivate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repls/{id}
+      name: repl
+      description: Get, update, or delete a specific Repl.
+      operations:
+      - method: GET
+        name: get-repl
+        description: Get Repl details.
+        call: replit.get-repl
+        with:
+          replId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: update-repl
+        description: Update Repl metadata.
+        call: replit.update-repl
+        with:
+          replId: rest.id
+          title: rest.title
+          description: rest.description
+          isPrivate: rest.isPrivate
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-repl
+        description: Delete a Repl permanently.
+        call: replit.delete-repl
+        with:
+          replId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repls/{id}/deployments
+      name: repl-deployments
+      description: Deploy Repls to production hosting.
+      operations:
+      - method: GET
+        name: list-repl-deployments
+        description: List deployments for a Repl.
+        call: replit.list-repl-deployments
+        with:
+          replId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: create-repl-deployment
+        description: Deploy a Repl to production.
+        call: replit.create-repl-deployment
+        with:
+          replId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deployments/{id}
+      name: deployment
+      description: Manage a specific deployment.
+      operations:
+      - method: GET
+        name: get-deployment
+        description: Get deployment details and status.
+        call: replit.get-deployment
+        with:
+          deploymentId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete-deployment
+        description: Remove a deployment from production.
+        call: replit.delete-deployment
+        with:
+          deploymentId: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/user
+      name: current-user
+      description: Current authenticated user profile.
+      operations:
+      - method: GET
+        name: get-current-user
+        description: Get the authenticated user's profile.
+        call: replit.get-current-user
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{username}
+      name: user
+      description: Public user profile.
+      operations:
+      - method: GET
+        name: get-user
+        description: Get a user's public profile.
+        call: replit.get-user
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{username}/repls
+      name: user-repls
+      description: Browse public Repls for a user.
+      operations:
+      - method: GET
+        name: list-user-repls
+        description: List public Repls for a user.
+        call: replit.list-user-repls
+        with:
+          username: rest.username
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: replit-workflow-mcp
+    transport: http
+    description: MCP server for AI-assisted Replit development workflow management.
+    tools:
+    - name: list-repls
+      description: List all Repls accessible to the authenticated user.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: replit.list-repls
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repl
+      description: Create a new Repl coding environment with the specified language.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: replit.create-repl
+      with:
+        title: tools.title
+        language: tools.language
+        description: tools.description
+        isPrivate: tools.isPrivate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repl
+      description: Get detailed information about a specific Repl.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: replit.get-repl
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-repl
+      description: Update a Repl's title, description, or privacy setting.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: replit.update-repl
+      with:
+        replId: tools.replId
+        title: tools.title
+        description: tools.description
+        isPrivate: tools.isPrivate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-repl
+      description: Permanently delete a Repl.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: replit.delete-repl
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deploy-repl
+      description: Deploy a Repl to production hosting.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: replit.create-repl-deployment
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-deployment
+      description: Check the status and details of a deployment.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: replit.get-deployment
+      with:
+        deploymentId: tools.deploymentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-repls
+      description: Browse public Repls for any Replit user.
+      hints:
+        readOnly: true
+        openWorld: true
+      call: replit.list-user-repls
+      with:
+        username: tools.username
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-current-user
+      description: Get the authenticated user's Replit profile.
+      hints:
+        readOnly: true
+        openWorld: false
+      call: replit.get-current-user
+      outputParameters:
+      - type: object
+        mapping: $.
