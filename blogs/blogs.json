@@ -4,10 +4,10 @@
     {
       "source": "https://blog.replit.com",
       "feed_url": "https://blog.replit.com/feed.xml",
-      "saved": 10,
-      "title": "Replit Blog"
+      "title": "Replit Blog",
+      "saved": 2
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:34:56Z"
+  "post_count": 12,
+  "fetched": "2026-05-09T20:17:51Z"
 }
