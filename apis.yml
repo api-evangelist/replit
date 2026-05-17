@@ -67,13 +67,13 @@ common:
     url: https://replit.com/signup
   - type: Login
     url: https://replit.com/login
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/replit
   - type: Python SDK
     url: https://github.com/replit/replit-py
   - type: Discord
     url: https://discord.gg/replit
-  - type: Status
+  - type: StatusPage
     url: https://status.replit.com
 maintainers:
   - FN: Kin Lane
