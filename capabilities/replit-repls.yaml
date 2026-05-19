@@ -1,0 +1,369 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Replit — Repls
+  description: 'Replit — Repls. 8 operations. Lead operation: List Repls. Self-contained Naftiko capability covering one Replit
+    business surface.'
+  tags:
+  - Replit
+  - Repls
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REPLIT_API_KEY: REPLIT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: replit-repls
+    baseUri: https://replit.com/api/v1
+    description: Replit — Repls business capability. Self-contained, no shared references.
+    resources:
+    - name: repls
+      path: /repls
+      operations:
+      - name: replslist
+        method: GET
+        description: List Repls
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results per page.
+        - name: cursor
+          in: query
+          type: string
+          description: Pagination cursor.
+      - name: replscreate
+        method: POST
+        description: Create a Repl
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: repls-replId
+      path: /repls/{replId}
+      operations:
+      - name: replsget
+        method: GET
+        description: Get a Repl
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          description: The Repl ID or slug.
+          required: true
+      - name: replsupdate
+        method: PATCH
+        description: Update a Repl
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          description: The Repl ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: replsdelete
+        method: DELETE
+        description: Delete a Repl
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          description: The Repl ID.
+          required: true
+    - name: repls-replId-deployments
+      path: /repls/{replId}/deployments
+      operations:
+      - name: replsdeploymentslist
+        method: GET
+        description: List Repl Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          description: The Repl ID.
+          required: true
+      - name: replsdeploymentscreate
+        method: POST
+        description: Create a Repl Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replId
+          in: path
+          type: string
+          description: The Repl ID to deploy.
+          required: true
+    - name: users-username-repls
+      path: /users/{username}/repls
+      operations:
+      - name: usersreplslist
+        method: GET
+        description: List User Repls
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          description: The user's username.
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Number of results per page.
+        - name: cursor
+          in: query
+          type: string
+          description: Pagination cursor.
+    authentication:
+      type: bearer
+      token: '{{env.REPLIT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: replit-repls-rest
+    port: 8080
+    description: REST adapter for Replit — Repls. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/repls
+      name: repls
+      description: REST surface for repls.
+      operations:
+      - method: GET
+        name: replslist
+        description: List Repls
+        call: replit-repls.replslist
+        with:
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: replscreate
+        description: Create a Repl
+        call: replit-repls.replscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repls/{replid}
+      name: repls-replid
+      description: REST surface for repls-replId.
+      operations:
+      - method: GET
+        name: replsget
+        description: Get a Repl
+        call: replit-repls.replsget
+        with:
+          replId: rest.replId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: replsupdate
+        description: Update a Repl
+        call: replit-repls.replsupdate
+        with:
+          replId: rest.replId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: replsdelete
+        description: Delete a Repl
+        call: replit-repls.replsdelete
+        with:
+          replId: rest.replId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repls/{replid}/deployments
+      name: repls-replid-deployments
+      description: REST surface for repls-replId-deployments.
+      operations:
+      - method: GET
+        name: replsdeploymentslist
+        description: List Repl Deployments
+        call: replit-repls.replsdeploymentslist
+        with:
+          replId: rest.replId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: replsdeploymentscreate
+        description: Create a Repl Deployment
+        call: replit-repls.replsdeploymentscreate
+        with:
+          replId: rest.replId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/users/{username}/repls
+      name: users-username-repls
+      description: REST surface for users-username-repls.
+      operations:
+      - method: GET
+        name: usersreplslist
+        description: List User Repls
+        call: replit-repls.usersreplslist
+        with:
+          username: rest.username
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: replit-repls-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Replit — Repls. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-repls
+      description: List Repls
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: replit-repls.replslist
+      with:
+        limit: tools.limit
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repl
+      description: Create a Repl
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: replit-repls.replscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repl
+      description: Get a Repl
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: replit-repls.replsget
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-repl
+      description: Update a Repl
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: replit-repls.replsupdate
+      with:
+        replId: tools.replId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-repl
+      description: Delete a Repl
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: replit-repls.replsdelete
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-repl-deployments
+      description: List Repl Deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: replit-repls.replsdeploymentslist
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-repl-deployment
+      description: Create a Repl Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: replit-repls.replsdeploymentscreate
+      with:
+        replId: tools.replId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-user-repls
+      description: List User Repls
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: replit-repls.usersreplslist
+      with:
+        username: tools.username
+        limit: tools.limit
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
