@@ -74,6 +74,8 @@ common:
   url: https://discord.gg/replit
 - type: StatusPage
   url: https://status.replit.com
+- type: LLMsTxt
+  url: https://docs.replit.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
