@@ -2,12 +2,20 @@
   "repo": "replit",
   "feeds": [
     {
-      "source": "https://blog.replit.com",
+      "source": "https://blog.replit.com/feed.xml",
       "feed_url": "https://blog.replit.com/feed.xml",
-      "title": "Replit Blog",
-      "saved": 40
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://replit.com/pricing",
+      "feed_url": "https://replit.com/pricing",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 52,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 53,
+  "fetched": "2026-06-01T23:35:02Z"
 }
