@@ -6,7 +6,7 @@ description: >-
   collaboration, an integrated editor and terminal, built-in package management, version control, and AI coding
   assistance. Use the Replit API to manage Repls, deployments, and users programmatically.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Code
   - Compiling
