@@ -59,7 +59,7 @@ common:
     url: https://replit.com/site/terms
   - type: PrivacyPolicy
     url: https://replit.com/site/privacy
-  - type: SignUp
+  - type: Signup
     url: https://replit.com/signup
   - type: Login
     url: https://replit.com/login
@@ -71,7 +71,7 @@ common:
     url: https://discord.gg/replit
   - type: StatusPage
     url: https://status.replit.com
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.replit.com/llms.txt
 maintainers:
   - FN: Kin Lane
