@@ -43,6 +43,12 @@ apis:
       - url: vocabulary/replit-vocabulary.yml
         type: Vocabulary
 common:
+  - type: TrustCenter
+    url: security/replit-trust-center.yml
+  - type: DomainSecurity
+    url: security/replit-domain-security.yml
+  - type: Authentication
+    url: authentication/replit-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/repl-it
   - type: Website

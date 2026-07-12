@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/replit-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: API Token from https://replit.com/account#api-tokens
+  sources:
+  - openapi/replit-openapi.yml

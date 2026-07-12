@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.replit.com/
+url: https://trust.replit.com/
+certifications:
+- SOC 2
+evidence:
+- source: https://trust.replit.com/
+  keywords:
+  - soc 2
+  - trust center
