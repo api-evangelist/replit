@@ -43,6 +43,8 @@ apis:
       - url: vocabulary/replit-vocabulary.yml
         type: Vocabulary
 common:
+  - type: AgenticAccess
+    url: agentic-access/replit-agentic-access.yml
   - type: TrustCenter
     url: security/replit-trust-center.yml
   - type: DomainSecurity
