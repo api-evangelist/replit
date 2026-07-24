@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Replit Deployments API
+  description: Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.
+  version: 1.0.0
+  contact:
+    url: https://replit.com/support
+  termsOfService: https://replit.com/site/terms
+servers:
+- url: https://replit.com/api/v1
+  description: Replit REST API v1
+security:
+- bearerAuth: []
+tags:
+- name: Deployments
+paths:
+  /repls/{replId}/deployments:
+    get:
+      operationId: repls.deployments.list
+      summary: List Repl Deployments
+      description: List all deployments for a Repl.
+      tags:
+      - Deployments
+      parameters:
+      - name: replId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The Repl ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Deployment'
+    post:
+      operationId: repls.deployments.create
+      summary: Create a Repl Deployment
+      description: Deploy a Repl to production hosting.
+      tags:
+      - Deployments
+      parameters:
+      - name: replId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The Repl ID to deploy.
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/{deploymentId}:
+    get:
+      operationId: deployments.get
+      summary: Get a Deployment
+      description: Get details for a specific deployment.
+      tags:
+      - Deployments
+      parameters:
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The deployment ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+        '404':
+          description: Not Found
+    delete:
+      operationId: deployments.delete
+      summary: Delete a Deployment
+      description: Remove a deployment from production.
+      tags:
+      - Deployments
+      parameters:
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The deployment ID.
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not Found
+components:
+  schemas:
+    Deployment:
+      type: object
+      description: A deployed application hosted by Replit.
+      properties:
+        id:
+          type: string
+          description: Unique deployment identifier.
+        replId:
+          type: string
+          description: The Repl ID this deployment is from.
+        status:
+          type: string
+          enum:
+          - pending
+          - deploying
+          - ready
+          - failed
+          - stopped
+          description: Current deployment status.
+        domain:
+          type: string
+          description: The domain the deployment is accessible at.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the deployment was created.
+      required:
+      - id
+      - replId
+      - status
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token from https://replit.com/account#api-tokens
+externalDocs:
+  description: Replit API Documentation
+  url: https://docs.replit.com/api

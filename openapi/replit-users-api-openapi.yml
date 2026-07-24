@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: Replit Deployments Users API
+  description: Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.
+  version: 1.0.0
+  contact:
+    url: https://replit.com/support
+  termsOfService: https://replit.com/site/terms
+servers:
+- url: https://replit.com/api/v1
+  description: Replit REST API v1
+security:
+- bearerAuth: []
+tags:
+- name: Users
+paths:
+  /user:
+    get:
+      operationId: user.get
+      summary: Get Current User
+      description: Get information about the authenticated user.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+  /users/{username}:
+    get:
+      operationId: users.get
+      summary: Get a User
+      description: Get public profile information for a user.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The user's username.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+  /users/{username}/repls:
+    get:
+      operationId: users.repls.list
+      summary: List User Repls
+      description: List all public Repls for a given user.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The user's username.
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 20
+        description: Number of results per page.
+      - name: cursor
+        in: query
+        schema:
+          type: string
+        description: Pagination cursor.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Repl'
+                  nextCursor:
+                    type: string
+                    nullable: true
+components:
+  schemas:
+    User:
+      type: object
+      description: A Replit user or organization.
+      properties:
+        id:
+          type: integer
+          description: Numeric user ID.
+        username:
+          type: string
+          description: User's username.
+        displayName:
+          type: string
+          description: User's display name.
+        bio:
+          type: string
+          description: User bio.
+        url:
+          type: string
+          format: uri
+          description: URL to the user's Replit profile.
+        isVerified:
+          type: boolean
+          description: Whether the user's account is verified.
+      required:
+      - id
+      - username
+    Repl:
+      type: object
+      description: A Repl is an online coding environment on Replit.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the Repl.
+        slug:
+          type: string
+          description: URL-friendly identifier for the Repl.
+        title:
+          type: string
+          description: Display name of the Repl.
+        description:
+          type: string
+          description: Description of what the Repl does.
+        language:
+          type: string
+          description: Primary programming language of the Repl.
+        isPrivate:
+          type: boolean
+          description: Whether the Repl is private.
+        url:
+          type: string
+          format: uri
+          description: URL to the Repl on Replit.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the Repl was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the Repl was last updated.
+        owner:
+          $ref: '#/components/schemas/User'
+      required:
+      - id
+      - slug
+      - title
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token from https://replit.com/account#api-tokens
+externalDocs:
+  description: Replit API Documentation
+  url: https://docs.replit.com/api
