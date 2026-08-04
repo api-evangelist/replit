@@ -1,0 +1,413 @@
+{
+  "info": {
+    "_postman_id": "46c3992b-1660-4c84-8e6d-acaf84a5108c",
+    "name": "Replit Deployments Users API",
+    "description": "Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:55.000Z",
+    "updatedAt": "2026-07-28T02:45:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-46c3992b-1660-4c84-8e6d-acaf84a5108c"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "Get Current User",
+          "id": "2b732a85-af35-417a-93b8-b0154d94d500",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Get information about the authenticated user."
+          },
+          "response": [
+            {
+              "id": "138fc926-e30c-44a9-8b78-2ead805553eb",
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"bio\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"isVerified\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:45:55.000Z",
+              "updatedAt": "2026-07-28T02:45:55.000Z",
+              "uid": "35240-138fc926-e30c-44a9-8b78-2ead805553eb"
+            },
+            {
+              "id": "b13c0b72-0f41-40a5-b7ed-aa6690bce5a0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:45:55.000Z",
+              "updatedAt": "2026-07-28T02:45:55.000Z",
+              "uid": "35240-b13c0b72-0f41-40a5-b7ed-aa6690bce5a0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:55.000Z",
+          "updatedAt": "2026-07-28T02:45:55.000Z",
+          "uid": "35240-2b732a85-af35-417a-93b8-b0154d94d500"
+        }
+      ],
+      "id": "3dea6b04-ff93-4dba-951a-1a2e01a20a88",
+      "createdAt": "2026-07-28T02:45:55.000Z",
+      "updatedAt": "2026-07-28T02:45:55.000Z",
+      "uid": "35240-3dea6b04-ff93-4dba-951a-1a2e01a20a88"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{username}",
+          "item": [
+            {
+              "name": "repls",
+              "item": [
+                {
+                  "name": "List User Repls",
+                  "id": "9f955056-a3a8-4003-99a3-e4949b483f71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:username/repls?limit=20&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":username",
+                        "repls"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results per page.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination cursor.",
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "24b82803-3123-4113-a933-acdd22d07025",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The user's username."
+                        }
+                      ]
+                    },
+                    "description": "List all public Repls for a given user."
+                  },
+                  "response": [
+                    {
+                      "id": "9becd4b6-83cf-4b12-b7db-af065dde7c18",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:username/repls?limit=20&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":username",
+                            "repls"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of results per page.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Pagination cursor.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:55.000Z",
+                      "updatedAt": "2026-07-28T02:45:55.000Z",
+                      "uid": "35240-9becd4b6-83cf-4b12-b7db-af065dde7c18"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:55.000Z",
+                  "updatedAt": "2026-07-28T02:45:55.000Z",
+                  "uid": "35240-9f955056-a3a8-4003-99a3-e4949b483f71"
+                }
+              ],
+              "id": "91c66e31-22f8-48fc-a33b-66dd83ab91cd",
+              "createdAt": "2026-07-28T02:45:55.000Z",
+              "updatedAt": "2026-07-28T02:45:55.000Z",
+              "uid": "35240-91c66e31-22f8-48fc-a33b-66dd83ab91cd"
+            },
+            {
+              "name": "Get a User",
+              "id": "834a8ffd-6670-4896-9a8d-e725e92242df",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:username",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":username"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6ff6f7d1-e5ad-41b3-8b32-5272972b52ec",
+                      "key": "username",
+                      "value": "<string>",
+                      "description": "(Required) The user's username."
+                    }
+                  ]
+                },
+                "description": "Get public profile information for a user."
+              },
+              "response": [
+                {
+                  "id": "9a564fe8-de9d-4a4f-8acd-f93daf83f7f3",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"bio\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"isVerified\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:45:55.000Z",
+                  "updatedAt": "2026-07-28T02:45:55.000Z",
+                  "uid": "35240-9a564fe8-de9d-4a4f-8acd-f93daf83f7f3"
+                },
+                {
+                  "id": "fe64afe1-ed06-4893-a5ce-1709c6d2247f",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:username",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":username"
+                      ],
+                      "variable": [
+                        {
+                          "key": "username"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:55.000Z",
+                  "updatedAt": "2026-07-28T02:45:55.000Z",
+                  "uid": "35240-fe64afe1-ed06-4893-a5ce-1709c6d2247f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:55.000Z",
+              "updatedAt": "2026-07-28T02:45:55.000Z",
+              "uid": "35240-834a8ffd-6670-4896-9a8d-e725e92242df"
+            }
+          ],
+          "id": "86b8ca3d-9b3b-4a6c-948d-ed3d5a4abf60",
+          "createdAt": "2026-07-28T02:45:55.000Z",
+          "updatedAt": "2026-07-28T02:45:55.000Z",
+          "uid": "35240-86b8ca3d-9b3b-4a6c-948d-ed3d5a4abf60"
+        }
+      ],
+      "id": "9032e8ae-3084-4d2c-8c96-e74d41ff6466",
+      "createdAt": "2026-07-28T02:45:55.000Z",
+      "updatedAt": "2026-07-28T02:45:55.000Z",
+      "uid": "35240-9032e8ae-3084-4d2c-8c96-e74d41ff6466"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://replit.com/api/v1"
+    }
+  ]
+}

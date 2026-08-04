@@ -1,0 +1,1077 @@
+{
+  "info": {
+    "_postman_id": "30335b99-d949-49e4-becf-51deb32a6de1",
+    "name": "Replit Deployments Repls API",
+    "description": "Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:54.000Z",
+    "updatedAt": "2026-07-28T02:45:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-30335b99-d949-49e4-becf-51deb32a6de1"
+  },
+  "item": [
+    {
+      "name": "repls",
+      "item": [
+        {
+          "name": "{replId}",
+          "item": [
+            {
+              "name": "deployments",
+              "item": [
+                {
+                  "name": "List Repl Deployments",
+                  "id": "be039fc1-1c88-4353-9b21-831f413e31a6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId",
+                        "deployments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5c3b1c9a-a74e-4da5-8734-9bc22c4f0afc",
+                          "key": "replId",
+                          "value": "<string>",
+                          "description": "(Required) The Repl ID."
+                        }
+                      ]
+                    },
+                    "description": "List all deployments for a Repl."
+                  },
+                  "response": [
+                    {
+                      "id": "2947c49d-bc76-4237-b920-6dde9344aace",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repls/:replId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repls",
+                            ":replId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "replId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"replId\": \"<string>\",\n      \"status\": \"stopped\",\n      \"domain\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"replId\": \"<string>\",\n      \"status\": \"pending\",\n      \"domain\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:54.000Z",
+                      "updatedAt": "2026-07-28T02:45:54.000Z",
+                      "uid": "35240-2947c49d-bc76-4237-b920-6dde9344aace"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-be039fc1-1c88-4353-9b21-831f413e31a6"
+                },
+                {
+                  "name": "Create a Repl Deployment",
+                  "id": "603d95d3-9b70-4d80-90b5-252a10927f65",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId",
+                        "deployments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7f4d2377-180f-4ff8-b490-3237325f7a31",
+                          "key": "replId",
+                          "value": "<string>",
+                          "description": "(Required) The Repl ID to deploy."
+                        }
+                      ]
+                    },
+                    "description": "Deploy a Repl to production hosting."
+                  },
+                  "response": [
+                    {
+                      "id": "3cb18508-9ff2-49d1-af87-7e280d52df5e",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repls/:replId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repls",
+                            ":replId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "replId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"replId\": \"<string>\",\n  \"status\": \"stopped\",\n  \"domain\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:45:54.000Z",
+                      "updatedAt": "2026-07-28T02:45:54.000Z",
+                      "uid": "35240-3cb18508-9ff2-49d1-af87-7e280d52df5e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-603d95d3-9b70-4d80-90b5-252a10927f65"
+                }
+              ],
+              "id": "b5c773da-da8a-49e5-8548-0a0eda486bbb",
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-b5c773da-da8a-49e5-8548-0a0eda486bbb"
+            },
+            {
+              "name": "Get a Repl",
+              "id": "9ac8a43d-c1bf-4357-9d77-c2006f9d9648",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repls/:replId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls",
+                    ":replId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5f91f1e3-d375-4403-a785-28b69fec230d",
+                      "key": "replId",
+                      "value": "<string>",
+                      "description": "(Required) The Repl ID or slug."
+                    }
+                  ]
+                },
+                "description": "Get details for a specific Repl."
+              },
+              "response": [
+                {
+                  "id": "e7507fb2-91f6-4d03-8ff4-2be1f64c187f",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"language\": \"<string>\",\n  \"isPrivate\": \"<boolean>\",\n  \"url\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"owner\": {\n    \"id\": \"<integer>\",\n    \"username\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"bio\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"isVerified\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-e7507fb2-91f6-4d03-8ff4-2be1f64c187f"
+                },
+                {
+                  "id": "fa3be61b-0625-4c7f-94bf-c40a37f0681f",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-fa3be61b-0625-4c7f-94bf-c40a37f0681f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-9ac8a43d-c1bf-4357-9d77-c2006f9d9648"
+            },
+            {
+              "name": "Update a Repl",
+              "id": "00a19533-0856-4232-b4d9-34ee2223913a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repls/:replId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls",
+                    ":replId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f309bbaa-087d-415f-ab6d-9517b44120df",
+                      "key": "replId",
+                      "value": "<string>",
+                      "description": "(Required) The Repl ID."
+                    }
+                  ]
+                },
+                "description": "Update a Repl's title, description, or privacy setting."
+              },
+              "response": [
+                {
+                  "id": "06c21e76-b539-42c0-87d5-12eb528f252a",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"language\": \"<string>\",\n  \"isPrivate\": \"<boolean>\",\n  \"url\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"owner\": {\n    \"id\": \"<integer>\",\n    \"username\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"bio\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"isVerified\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-06c21e76-b539-42c0-87d5-12eb528f252a"
+                },
+                {
+                  "id": "ebb8d319-d33e-4348-914d-284282b86653",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-ebb8d319-d33e-4348-914d-284282b86653"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-00a19533-0856-4232-b4d9-34ee2223913a"
+            },
+            {
+              "name": "Delete a Repl",
+              "id": "cb28ab49-9ebc-4e53-8911-7069e83dc0bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/repls/:replId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls",
+                    ":replId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a2cc7d18-0b03-400c-954f-454b92343325",
+                      "key": "replId",
+                      "value": "<string>",
+                      "description": "(Required) The Repl ID."
+                    }
+                  ]
+                },
+                "description": "Permanently delete a Repl."
+              },
+              "response": [
+                {
+                  "id": "63e29e72-849f-423b-9707-e8ba5eb26575",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-63e29e72-849f-423b-9707-e8ba5eb26575"
+                },
+                {
+                  "id": "9bb84f8c-7e7a-4d21-a053-bfee1b3a45ef",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "replId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-9bb84f8c-7e7a-4d21-a053-bfee1b3a45ef"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-cb28ab49-9ebc-4e53-8911-7069e83dc0bc"
+            }
+          ],
+          "id": "87c24823-554f-4b92-8799-12485de24e75",
+          "createdAt": "2026-07-28T02:45:54.000Z",
+          "updatedAt": "2026-07-28T02:45:54.000Z",
+          "uid": "35240-87c24823-554f-4b92-8799-12485de24e75"
+        },
+        {
+          "name": "List Repls",
+          "id": "2247ff4a-ea92-4719-8c63-b92d0dd5c44d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/repls?limit=20&cursor=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repls"
+              ],
+              "query": [
+                {
+                  "description": "Number of results per page.",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "Pagination cursor.",
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List all Repls accessible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "26bfbde7-bc24-4343-8487-d12fc0134fb5",
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repls?limit=20&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results per page.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Pagination cursor.",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-26bfbde7-bc24-4343-8487-d12fc0134fb5"
+            },
+            {
+              "id": "48d2aeae-e45d-41fb-977f-3b830f8aa3fa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repls?limit=20&cursor=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls"
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results per page.",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "Pagination cursor.",
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-48d2aeae-e45d-41fb-977f-3b830f8aa3fa"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:54.000Z",
+          "updatedAt": "2026-07-28T02:45:54.000Z",
+          "uid": "35240-2247ff4a-ea92-4719-8c63-b92d0dd5c44d"
+        },
+        {
+          "name": "Create a Repl",
+          "id": "be937abd-2220-4274-9a19-98a33af0e314",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"language\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repls",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repls"
+              ]
+            },
+            "description": "Create a new Repl."
+          },
+          "response": [
+            {
+              "id": "71d7a548-f288-4755-bd89-c6c4db0e7157",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"language\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repls",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"language\": \"<string>\",\n  \"isPrivate\": \"<boolean>\",\n  \"url\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\",\n  \"owner\": {\n    \"id\": \"<integer>\",\n    \"username\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"bio\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"isVerified\": \"<boolean>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-71d7a548-f288-4755-bd89-c6c4db0e7157"
+            },
+            {
+              "id": "f07180de-be52-4dd0-9ab2-fb8dbe0e7a41",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"language\": \"<string>\",\n  \"description\": \"<string>\",\n  \"isPrivate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repls",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repls"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-f07180de-be52-4dd0-9ab2-fb8dbe0e7a41"
+            }
+          ],
+          "createdAt": "2026-07-28T02:45:54.000Z",
+          "updatedAt": "2026-07-28T02:45:54.000Z",
+          "uid": "35240-be937abd-2220-4274-9a19-98a33af0e314"
+        }
+      ],
+      "id": "a1b70135-abe2-4401-b6ba-cd0978d345d3",
+      "createdAt": "2026-07-28T02:45:54.000Z",
+      "updatedAt": "2026-07-28T02:45:54.000Z",
+      "uid": "35240-a1b70135-abe2-4401-b6ba-cd0978d345d3"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "{username}",
+          "item": [
+            {
+              "name": "repls",
+              "item": [
+                {
+                  "name": "List User Repls",
+                  "id": "fb1fd51d-303a-4577-8eca-c49593993a75",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:username/repls?limit=20&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":username",
+                        "repls"
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results per page.",
+                          "key": "limit",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Pagination cursor.",
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "96a7a28c-12e8-4b8b-b9eb-03a361805d05",
+                          "key": "username",
+                          "value": "<string>",
+                          "description": "(Required) The user's username."
+                        }
+                      ]
+                    },
+                    "description": "List all public Repls for a given user."
+                  },
+                  "response": [
+                    {
+                      "id": "277af44d-02f7-4ffa-8c0b-8c92f0f540f1",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:username/repls?limit=20&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":username",
+                            "repls"
+                          ],
+                          "query": [
+                            {
+                              "description": "Number of results per page.",
+                              "key": "limit",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Pagination cursor.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "username"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"slug\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string>\",\n      \"language\": \"<string>\",\n      \"isPrivate\": \"<boolean>\",\n      \"url\": \"<uri>\",\n      \"createdAt\": \"<dateTime>\",\n      \"updatedAt\": \"<dateTime>\",\n      \"owner\": {\n        \"id\": \"<integer>\",\n        \"username\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"bio\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"isVerified\": \"<boolean>\"\n      }\n    }\n  ],\n  \"nextCursor\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:45:54.000Z",
+                      "updatedAt": "2026-07-28T02:45:54.000Z",
+                      "uid": "35240-277af44d-02f7-4ffa-8c0b-8c92f0f540f1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:54.000Z",
+                  "updatedAt": "2026-07-28T02:45:54.000Z",
+                  "uid": "35240-fb1fd51d-303a-4577-8eca-c49593993a75"
+                }
+              ],
+              "id": "e5b9265a-0287-400b-b320-ad0d53bebbcf",
+              "createdAt": "2026-07-28T02:45:54.000Z",
+              "updatedAt": "2026-07-28T02:45:54.000Z",
+              "uid": "35240-e5b9265a-0287-400b-b320-ad0d53bebbcf"
+            }
+          ],
+          "id": "9e5bfb79-7772-4c01-bbc6-9cf15dcc37bf",
+          "createdAt": "2026-07-28T02:45:54.000Z",
+          "updatedAt": "2026-07-28T02:45:54.000Z",
+          "uid": "35240-9e5bfb79-7772-4c01-bbc6-9cf15dcc37bf"
+        }
+      ],
+      "id": "35a09e34-4191-44f9-b542-ef84e221ff96",
+      "createdAt": "2026-07-28T02:45:54.000Z",
+      "updatedAt": "2026-07-28T02:45:54.000Z",
+      "uid": "35240-35a09e34-4191-44f9-b542-ef84e221ff96"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://replit.com/api/v1"
+    }
+  ]
+}

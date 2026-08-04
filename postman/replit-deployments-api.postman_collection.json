@@ -1,0 +1,495 @@
+{
+  "info": {
+    "_postman_id": "796fdd23-9dd4-4f80-bb23-275b9f879e2d",
+    "name": "Replit Deployments API",
+    "description": "Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:45:53.000Z",
+    "updatedAt": "2026-07-28T02:45:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-796fdd23-9dd4-4f80-bb23-275b9f879e2d"
+  },
+  "item": [
+    {
+      "name": "repls",
+      "item": [
+        {
+          "name": "{replId}",
+          "item": [
+            {
+              "name": "deployments",
+              "item": [
+                {
+                  "name": "List Repl Deployments",
+                  "id": "fac4d9ea-15b3-403f-b16e-04982ecd3846",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId",
+                        "deployments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dad37e75-f593-423f-9af9-37799357869e",
+                          "key": "replId",
+                          "value": "<string>",
+                          "description": "(Required) The Repl ID."
+                        }
+                      ]
+                    },
+                    "description": "List all deployments for a Repl."
+                  },
+                  "response": [
+                    {
+                      "id": "5f28ecc9-7715-4365-87c8-f14d5fda4b7e",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repls/:replId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repls",
+                            ":replId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "replId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"replId\": \"<string>\",\n      \"status\": \"deploying\",\n      \"domain\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"replId\": \"<string>\",\n      \"status\": \"ready\",\n      \"domain\": \"<string>\",\n      \"createdAt\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:45:53.000Z",
+                      "updatedAt": "2026-07-28T02:45:53.000Z",
+                      "uid": "35240-5f28ecc9-7715-4365-87c8-f14d5fda4b7e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-fac4d9ea-15b3-403f-b16e-04982ecd3846"
+                },
+                {
+                  "name": "Create a Repl Deployment",
+                  "id": "b343d94d-2bf4-4e25-9e80-4d445cc79647",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repls/:replId/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repls",
+                        ":replId",
+                        "deployments"
+                      ],
+                      "variable": [
+                        {
+                          "id": "378fcb7f-8dba-4261-87f6-3c3db5f2cab0",
+                          "key": "replId",
+                          "value": "<string>",
+                          "description": "(Required) The Repl ID to deploy."
+                        }
+                      ]
+                    },
+                    "description": "Deploy a Repl to production hosting."
+                  },
+                  "response": [
+                    {
+                      "id": "f501dac6-b800-47f6-9150-32eca14dfc8b",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repls/:replId/deployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repls",
+                            ":replId",
+                            "deployments"
+                          ],
+                          "variable": [
+                            {
+                              "key": "replId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"replId\": \"<string>\",\n  \"status\": \"stopped\",\n  \"domain\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:45:53.000Z",
+                      "updatedAt": "2026-07-28T02:45:53.000Z",
+                      "uid": "35240-f501dac6-b800-47f6-9150-32eca14dfc8b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-b343d94d-2bf4-4e25-9e80-4d445cc79647"
+                }
+              ],
+              "id": "f42207cd-c7ca-4e5b-9b40-335e2587ab24",
+              "createdAt": "2026-07-28T02:45:53.000Z",
+              "updatedAt": "2026-07-28T02:45:53.000Z",
+              "uid": "35240-f42207cd-c7ca-4e5b-9b40-335e2587ab24"
+            }
+          ],
+          "id": "0bf4a9f3-b40f-42aa-859f-c09912294b23",
+          "createdAt": "2026-07-28T02:45:53.000Z",
+          "updatedAt": "2026-07-28T02:45:53.000Z",
+          "uid": "35240-0bf4a9f3-b40f-42aa-859f-c09912294b23"
+        }
+      ],
+      "id": "18dfd103-2b84-4430-86e7-a403fc6e7da1",
+      "createdAt": "2026-07-28T02:45:53.000Z",
+      "updatedAt": "2026-07-28T02:45:53.000Z",
+      "uid": "35240-18dfd103-2b84-4430-86e7-a403fc6e7da1"
+    },
+    {
+      "name": "deployments",
+      "item": [
+        {
+          "name": "{deploymentId}",
+          "item": [
+            {
+              "name": "Get a Deployment",
+              "id": "6679f8a5-cc0b-44f3-affa-6381dfdf5c22",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/deployments/:deploymentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cc9ebba5-599c-4bb2-b48a-7ba4998df621",
+                      "key": "deploymentId",
+                      "value": "<string>",
+                      "description": "(Required) The deployment ID."
+                    }
+                  ]
+                },
+                "description": "Get details for a specific deployment."
+              },
+              "response": [
+                {
+                  "id": "6a45a4ea-2383-4f8a-9164-87aa77f53731",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deploymentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"replId\": \"<string>\",\n  \"status\": \"stopped\",\n  \"domain\": \"<string>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-6a45a4ea-2383-4f8a-9164-87aa77f53731"
+                },
+                {
+                  "id": "7b6461c1-c215-4f4f-ab36-42db8507d47d",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deploymentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-7b6461c1-c215-4f4f-ab36-42db8507d47d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:53.000Z",
+              "updatedAt": "2026-07-28T02:45:53.000Z",
+              "uid": "35240-6679f8a5-cc0b-44f3-affa-6381dfdf5c22"
+            },
+            {
+              "name": "Delete a Deployment",
+              "id": "669942bd-2a7b-4367-95bd-246ca89f31b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/deployments/:deploymentId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deployments",
+                    ":deploymentId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "820e8813-0374-46a7-8dbe-2283f82fd09b",
+                      "key": "deploymentId",
+                      "value": "<string>",
+                      "description": "(Required) The deployment ID."
+                    }
+                  ]
+                },
+                "description": "Remove a deployment from production."
+              },
+              "response": [
+                {
+                  "id": "a9691753-ec5d-4cf9-b6a9-47cbaf8dd687",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deploymentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-a9691753-ec5d-4cf9-b6a9-47cbaf8dd687"
+                },
+                {
+                  "id": "cc21de05-f594-42e4-bc08-82907320d240",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "deploymentId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:45:53.000Z",
+                  "updatedAt": "2026-07-28T02:45:53.000Z",
+                  "uid": "35240-cc21de05-f594-42e4-bc08-82907320d240"
+                }
+              ],
+              "createdAt": "2026-07-28T02:45:53.000Z",
+              "updatedAt": "2026-07-28T02:45:53.000Z",
+              "uid": "35240-669942bd-2a7b-4367-95bd-246ca89f31b6"
+            }
+          ],
+          "id": "0a24c283-0c6f-4af8-afbd-a2502d2b0591",
+          "createdAt": "2026-07-28T02:45:53.000Z",
+          "updatedAt": "2026-07-28T02:45:53.000Z",
+          "uid": "35240-0a24c283-0c6f-4af8-afbd-a2502d2b0591"
+        }
+      ],
+      "id": "3c5ef67c-cb7e-4a1d-adf2-9e33ca090d7e",
+      "createdAt": "2026-07-28T02:45:53.000Z",
+      "updatedAt": "2026-07-28T02:45:53.000Z",
+      "uid": "35240-3c5ef67c-cb7e-4a1d-adf2-9e33ca090d7e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://replit.com/api/v1"
+    }
+  ]
+}

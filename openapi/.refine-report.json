@@ -1,0 +1,18 @@
+{
+  "provider": "replit",
+  "sources": [
+    "replit-deployments-api-openapi.yml",
+    "replit-repls-api-openapi.yml",
+    "replit-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "replit-deployments-api-openapi.yml",
+    "replit-repls-api-openapi.yml",
+    "replit-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,443 @@
+openapi: 3.1.0
+info:
+  title: Replit
+  description: >-
+    Replit is a cloud-based development platform that lets you create, run, and
+    deploy software directly from your browser. The Replit API provides
+    programmatic access to manage Repls, deployments, and platform resources.
+    Use the API to automate workflows, integrate Replit into CI/CD pipelines,
+    and manage your development environment at scale.
+  version: 1.0.0
+  contact:
+    url: https://replit.com/support
+  termsOfService: https://replit.com/site/terms
+externalDocs:
+  description: Replit API Documentation
+  url: https://docs.replit.com/api
+servers:
+  - url: https://replit.com/api/v1
+    description: Replit REST API v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Token from https://replit.com/account#api-tokens
+  schemas:
+    Repl:
+      type: object
+      description: A Repl is an online coding environment on Replit.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the Repl.
+        slug:
+          type: string
+          description: URL-friendly identifier for the Repl.
+        title:
+          type: string
+          description: Display name of the Repl.
+        description:
+          type: string
+          description: Description of what the Repl does.
+        language:
+          type: string
+          description: Primary programming language of the Repl.
+        isPrivate:
+          type: boolean
+          description: Whether the Repl is private.
+        url:
+          type: string
+          format: uri
+          description: URL to the Repl on Replit.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the Repl was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the Repl was last updated.
+        owner:
+          $ref: '#/components/schemas/User'
+      required:
+        - id
+        - slug
+        - title
+    User:
+      type: object
+      description: A Replit user or organization.
+      properties:
+        id:
+          type: integer
+          description: Numeric user ID.
+        username:
+          type: string
+          description: User's username.
+        displayName:
+          type: string
+          description: User's display name.
+        bio:
+          type: string
+          description: User bio.
+        url:
+          type: string
+          format: uri
+          description: URL to the user's Replit profile.
+        isVerified:
+          type: boolean
+          description: Whether the user's account is verified.
+      required:
+        - id
+        - username
+    Deployment:
+      type: object
+      description: A deployed application hosted by Replit.
+      properties:
+        id:
+          type: string
+          description: Unique deployment identifier.
+        replId:
+          type: string
+          description: The Repl ID this deployment is from.
+        status:
+          type: string
+          enum: [pending, deploying, ready, failed, stopped]
+          description: Current deployment status.
+        domain:
+          type: string
+          description: The domain the deployment is accessible at.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the deployment was created.
+      required:
+        - id
+        - replId
+        - status
+security:
+  - bearerAuth: []
+paths:
+  /repls:
+    get:
+      operationId: repls.list
+      summary: List Repls
+      description: List all Repls accessible to the authenticated user.
+      tags:
+        - Repls
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+          description: Number of results per page.
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Pagination cursor.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Repl'
+                  nextCursor:
+                    type: string
+                    nullable: true
+        '401':
+          description: Unauthorized
+    post:
+      operationId: repls.create
+      summary: Create a Repl
+      description: Create a new Repl.
+      tags:
+        - Repls
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - language
+              properties:
+                title:
+                  type: string
+                  description: Title for the new Repl.
+                language:
+                  type: string
+                  description: Programming language template to use.
+                description:
+                  type: string
+                  description: Description of the Repl.
+                isPrivate:
+                  type: boolean
+                  description: Whether to make the Repl private.
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repl'
+        '401':
+          description: Unauthorized
+
+  /repls/{replId}:
+    get:
+      operationId: repls.get
+      summary: Get a Repl
+      description: Get details for a specific Repl.
+      tags:
+        - Repls
+      parameters:
+        - name: replId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Repl ID or slug.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repl'
+        '404':
+          description: Not Found
+    patch:
+      operationId: repls.update
+      summary: Update a Repl
+      description: Update a Repl's title, description, or privacy setting.
+      tags:
+        - Repls
+      parameters:
+        - name: replId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Repl ID.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                isPrivate:
+                  type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repl'
+        '404':
+          description: Not Found
+    delete:
+      operationId: repls.delete
+      summary: Delete a Repl
+      description: Permanently delete a Repl.
+      tags:
+        - Repls
+      parameters:
+        - name: replId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Repl ID.
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not Found
+
+  /repls/{replId}/deployments:
+    get:
+      operationId: repls.deployments.list
+      summary: List Repl Deployments
+      description: List all deployments for a Repl.
+      tags:
+        - Deployments
+        - Repls
+      parameters:
+        - name: replId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Repl ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Deployment'
+    post:
+      operationId: repls.deployments.create
+      summary: Create a Repl Deployment
+      description: Deploy a Repl to production hosting.
+      tags:
+        - Deployments
+        - Repls
+      parameters:
+        - name: replId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The Repl ID to deploy.
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+
+  /deployments/{deploymentId}:
+    get:
+      operationId: deployments.get
+      summary: Get a Deployment
+      description: Get details for a specific deployment.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The deployment ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+        '404':
+          description: Not Found
+    delete:
+      operationId: deployments.delete
+      summary: Delete a Deployment
+      description: Remove a deployment from production.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The deployment ID.
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not Found
+
+  /user:
+    get:
+      operationId: user.get
+      summary: Get Current User
+      description: Get information about the authenticated user.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+
+  /users/{username}:
+    get:
+      operationId: users.get
+      summary: Get a User
+      description: Get public profile information for a user.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The user's username.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Not Found
+
+  /users/{username}/repls:
+    get:
+      operationId: users.repls.list
+      summary: List User Repls
+      description: List all public Repls for a given user.
+      tags:
+        - Repls
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The user's username.
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+          description: Number of results per page.
+        - name: cursor
+          in: query
+          schema:
+            type: string
+          description: Pagination cursor.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Repl'
+                  nextCursor:
+                    type: string
+                    nullable: true
