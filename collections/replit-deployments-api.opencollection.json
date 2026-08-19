@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Replit Deployments API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Repl Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/repls/:replId/deployments",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID."
+              }
+            ]
+          },
+          "docs": "List all deployments for a Repl."
+        },
+        {
+          "info": {
+            "name": "Create a Repl Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://replit.com/api/v1/repls/:replId/deployments",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID to deploy."
+              }
+            ]
+          },
+          "docs": "Deploy a Repl to production hosting."
+        },
+        {
+          "info": {
+            "name": "Get a Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path",
+                "description": "The deployment ID."
+              }
+            ]
+          },
+          "docs": "Get details for a specific deployment."
+        },
+        {
+          "info": {
+            "name": "Delete a Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://replit.com/api/v1/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path",
+                "description": "The deployment ID."
+              }
+            ]
+          },
+          "docs": "Remove a deployment from production."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

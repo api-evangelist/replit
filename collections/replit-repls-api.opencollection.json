@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Replit Deployments Repls API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Repls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/repls",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "List all Repls accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create a Repl",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://replit.com/api/v1/repls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Repl."
+        },
+        {
+          "info": {
+            "name": "Get a Repl",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/repls/:replId",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID or slug."
+              }
+            ]
+          },
+          "docs": "Get details for a specific Repl."
+        },
+        {
+          "info": {
+            "name": "Update a Repl",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://replit.com/api/v1/repls/:replId",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Repl's title, description, or privacy setting."
+        },
+        {
+          "info": {
+            "name": "Delete a Repl",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://replit.com/api/v1/repls/:replId",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID."
+              }
+            ]
+          },
+          "docs": "Permanently delete a Repl."
+        },
+        {
+          "info": {
+            "name": "List Repl Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/repls/:replId/deployments",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID."
+              }
+            ]
+          },
+          "docs": "List all deployments for a Repl."
+        },
+        {
+          "info": {
+            "name": "Create a Repl Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://replit.com/api/v1/repls/:replId/deployments",
+            "params": [
+              {
+                "name": "replId",
+                "value": "",
+                "type": "path",
+                "description": "The Repl ID to deploy."
+              }
+            ]
+          },
+          "docs": "Deploy a Repl to production hosting."
+        },
+        {
+          "info": {
+            "name": "List User Repls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://replit.com/api/v1/users/:username/repls",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "The user's username."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              }
+            ]
+          },
+          "docs": "List all public Repls for a given user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
