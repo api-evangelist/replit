@@ -36,6 +36,8 @@ apis:
   description: The Deployments API from Replit — 2 operation(s) for deployments.
   humanURL: https://replit.com/
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -66,6 +68,8 @@ apis:
   description: The Users API from Replit — 3 operation(s) for users.
   humanURL: https://replit.com/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
