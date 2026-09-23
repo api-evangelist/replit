@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Replit Deployments Users API
+  title: Replit Users API
   description: Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.
   version: 1.0.0
   contact:
@@ -95,32 +95,6 @@ paths:
                     nullable: true
 components:
   schemas:
-    User:
-      type: object
-      description: A Replit user or organization.
-      properties:
-        id:
-          type: integer
-          description: Numeric user ID.
-        username:
-          type: string
-          description: User's username.
-        displayName:
-          type: string
-          description: User's display name.
-        bio:
-          type: string
-          description: User bio.
-        url:
-          type: string
-          format: uri
-          description: URL to the user's Replit profile.
-        isVerified:
-          type: boolean
-          description: Whether the user's account is verified.
-      required:
-      - id
-      - username
     Repl:
       type: object
       description: A Repl is an online coding environment on Replit.
@@ -161,6 +135,32 @@ components:
       - id
       - slug
       - title
+    User:
+      type: object
+      description: A Replit user or organization.
+      properties:
+        id:
+          type: integer
+          description: Numeric user ID.
+        username:
+          type: string
+          description: User's username.
+        displayName:
+          type: string
+          description: User's display name.
+        bio:
+          type: string
+          description: User bio.
+        url:
+          type: string
+          format: uri
+          description: URL to the user's Replit profile.
+        isVerified:
+          type: boolean
+          description: Whether the user's account is verified.
+      required:
+      - id
+      - username
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Replit Deployments API
   description: Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls, deployments, and platform resources. Use the API to automate workflows, integrate Replit into CI/CD pipelines, and manage your development environment at scale.

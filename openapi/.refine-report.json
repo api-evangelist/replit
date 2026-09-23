@@ -1,9 +1,7 @@
 {
   "provider": "replit",
   "sources": [
-    "replit-deployments-api-openapi.yml",
-    "replit-repls-api-openapi.yml",
-    "replit-users-api-openapi.yml"
+    "_original/replit-openapi.yml"
   ],
   "outputs": [
     "replit-deployments-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "replit-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "replit-openapi.yml: declared missing tag: Deployments",
+    "replit-openapi.yml: declared missing tag: Repls",
+    "replit-openapi.yml: declared missing tag: Users",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "replit-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "replit-repls-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "replit-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
