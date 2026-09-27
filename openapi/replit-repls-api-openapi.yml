@@ -250,6 +250,32 @@ paths:
                     nullable: true
 components:
   schemas:
+    User:
+      type: object
+      description: A Replit user or organization.
+      properties:
+        id:
+          type: integer
+          description: Numeric user ID.
+        username:
+          type: string
+          description: User's username.
+        displayName:
+          type: string
+          description: User's display name.
+        bio:
+          type: string
+          description: User bio.
+        url:
+          type: string
+          format: uri
+          description: URL to the user's Replit profile.
+        isVerified:
+          type: boolean
+          description: Whether the user's account is verified.
+      required:
+      - id
+      - username
     Deployment:
       type: object
       description: A deployed application hosted by Replit.
@@ -320,32 +346,6 @@ components:
       - id
       - slug
       - title
-    User:
-      type: object
-      description: A Replit user or organization.
-      properties:
-        id:
-          type: integer
-          description: Numeric user ID.
-        username:
-          type: string
-          description: User's username.
-        displayName:
-          type: string
-          description: User's display name.
-        bio:
-          type: string
-          description: User bio.
-        url:
-          type: string
-          format: uri
-          description: URL to the user's Replit profile.
-        isVerified:
-          type: boolean
-          description: Whether the user's account is verified.
-      required:
-      - id
-      - username
   securitySchemes:
     bearerAuth:
       type: http
