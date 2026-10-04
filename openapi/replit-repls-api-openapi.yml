@@ -250,6 +250,36 @@ paths:
                     nullable: true
 components:
   schemas:
+    Deployment:
+      type: object
+      description: A deployed application hosted by Replit.
+      properties:
+        id:
+          type: string
+          description: Unique deployment identifier.
+        replId:
+          type: string
+          description: The Repl ID this deployment is from.
+        status:
+          type: string
+          enum:
+          - pending
+          - deploying
+          - ready
+          - failed
+          - stopped
+          description: Current deployment status.
+        domain:
+          type: string
+          description: The domain the deployment is accessible at.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the deployment was created.
+      required:
+      - id
+      - replId
+      - status
     User:
       type: object
       description: A Replit user or organization.
@@ -316,36 +346,6 @@ components:
       - id
       - slug
       - title
-    Deployment:
-      type: object
-      description: A deployed application hosted by Replit.
-      properties:
-        id:
-          type: string
-          description: Unique deployment identifier.
-        replId:
-          type: string
-          description: The Repl ID this deployment is from.
-        status:
-          type: string
-          enum:
-          - pending
-          - deploying
-          - ready
-          - failed
-          - stopped
-          description: Current deployment status.
-        domain:
-          type: string
-          description: The domain the deployment is accessible at.
-        createdAt:
-          type: string
-          format: date-time
-          description: When the deployment was created.
-      required:
-      - id
-      - replId
-      - status
   securitySchemes:
     bearerAuth:
       type: http
