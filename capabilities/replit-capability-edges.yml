@@ -1,0 +1,26 @@
+slug: replit
+provider: Replit
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Deployments
+  spec_file: replit-deployments-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.7
+  evidence: '"POST /repls/{replId}/deployments  repls.deployments.create  Create a Repl Deployment"; "integrate
+    Replit into CI/CD pipelines"'
+  reason: Operations create, list and delete deployments of a software project to the hosted runtime,
+    which is deployment execution/orchestration. Sub-capability is inferred from the deployment lifecycle
+    verbs; no rollout-strategy detail is exposed, so not top confidence.

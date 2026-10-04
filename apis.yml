@@ -102,6 +102,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/replit-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/replit-capability-edges.yml
+    name: Replit Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/replit/overview
   - type: AgenticAccess
