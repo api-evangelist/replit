@@ -1,4 +1,4 @@
-# Replit (replit)
+# Replit
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,71 +66,167 @@
 
 Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. It provides instant, containerized environments for many programming languages, real-time multiplayer collaboration, an integrated editor and terminal, built-in package management, version control, and AI coding assistance. Use the Replit API to manage Repls, deployments, and users programmatically.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/replit/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/replit/refs/heads/main/apis.yml)
+**Areas:** Code · Compiling · Developer Tools · Development Environment · Programming Language · Version Control
 
-## Scope
+## Replit on APIs.io
 
-- **Type:** Index
+Everything profiled for Replit is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/replit/](https://apis.io/providers/replit/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Code
-- Compiling
-- Development Environment
-- Programming Languages
-- Version Control
+- [Replit Deployments API](https://apis.io/apis/replit/replit-deployments-api/) — The Deployments API from Replit — 2 operation(s) for deployments.
+- [Replit Repls API](https://apis.io/apis/replit/replit-repls-api/) — The Repls API from Replit — 4 operation(s) for repls.
+- [Replit Users API](https://apis.io/apis/replit/replit-users-api/) — The Users API from Replit — 3 operation(s) for users.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-01-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Replit
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Replit is a cloud-based development platform that lets you create, run, and deploy software directly from your browser. The Replit API provides programmatic access to manage Repls (coding environments), deployments, and user profiles.
+- [Replit Agentic Access](https://apis.io/agentic-access/replit/replit-agentic-access/)
 
-- **Human URL:** [https://replit.com/](https://replit.com/)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Code
-- Development Environment
-- Deployments
-- Programming Languages
-- Repls
-- Users
-- Version Control
+- [Replit Repl](https://apis.io/schemas/replit/replit-repl/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.replit.com/api)
-- [OpenAPI](openapi/replit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/replit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/replit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Ruleset](rules/replit-rules.yml)
-- [Vocabulary](vocabulary/replit-vocabulary.yml)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Replit Repl Structure](https://apis.io/json-structure/replit/replit-repl-structure/)
 
-- [LinkedIn](https://www.linkedin.com/company/repl-it)
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Replit Context](https://apis.io/jsonld/replit/replit-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Replit Vocabulary](https://apis.io/vocabularies/replit/replit-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Replit Create Repl Example](https://apis.io/examples/replit/replit-create-repl-example/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Replit](https://apis.io/collections/replit/open-replit/)
+- [Replit Deployments API](https://apis.io/collections/replit/open-replit-deployments-api/)
+- [Replit Deployments Repls API](https://apis.io/collections/replit/open-replit-repls-api/)
+- [Replit Deployments Users API](https://apis.io/collections/replit/open-replit-users-api/)
+- [Replit Deployments API](https://apis.io/collections/replit/postman-replit-deployments-api/)
+- [Replit Deployments Repls API](https://apis.io/collections/replit/postman-replit-repls-api/)
+- [Replit Deployments Users API](https://apis.io/collections/replit/postman-replit-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Replit — jsonschema rules](https://apis.io/rules/replit/replit-jsonschema-spectral-rules/)
+- [Replit API Rules](https://apis.io/rules/replit/replit-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Replit Authentication](https://apis.io/security/replit/replit-authentication/)
+- [Replit Domain Security](https://apis.io/security/replit/replit-domain-security/)
+- [Replit Trust Center](https://apis.io/security/replit/replit-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Replit Plans Pricing](https://apis.io/plans/replit/replit-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Replit Rate Limits](https://apis.io/rate-limits/replit/replit-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Replit Finops](https://apis.io/finops/replit/replit-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://replit.com)
 - [Documentation](https://docs.replit.com)
-- [A P I  Documentation](https://docs.replit.com/api)
 - [Pricing](https://replit.com/pricing)
 - [Blog](https://blog.replit.com)
-- [Terms of Service](https://replit.com/site/terms)
-- [Privacy Policy](https://replit.com/site/privacy)
-- [Sign Up](https://replit.com/signup)
-- [Login](https://replit.com/login)
-- [GitHub Organization](https://github.com/replit)
-- [Python  S D K](https://github.com/replit/replit-py)
-- [Discord](https://discord.gg/replit)
-- [Status Page](https://status.replit.com)
-- [L L Ms Txt](https://docs.replit.com/llms.txt)
+- [Terms of service](https://replit.com/site/terms)
+- [Privacy policy](https://replit.com/site/privacy)
+- [GitHub](https://github.com/replit)
+- [Status](https://status.replit.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 49.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 60.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 44.0 |
+| Access clarity | 53.9 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/replit/](https://apis.io/providers/replit/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Replit: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/replit/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
